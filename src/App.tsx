@@ -1,14 +1,14 @@
 import './App.css'
-import Button from '@mui/material/Button';
-import { motion } from "motion/react"
+import Button from './ui/atoms/Button'
 
 function App() {
 
   return (
-    <>
-      <Button variant="contained">Hello world</Button>
-      <motion.ul animate={{ rotate: 360 }} />
-    </>
+    <main className="flex h-screen items-center justify-center bg-[#f5f5f5] gap-4">
+      <Button variant="primary"> Log in </Button>
+      <Button variant="secondary"> Get started </Button>
+      <Button variant="tertiary"> Get started </Button>
+    </main>
   )
 }
 
