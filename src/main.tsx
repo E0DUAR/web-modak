@@ -1,24 +1,11 @@
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
-import './index.css'
-import App from './App.tsx'
-
-import { ThemeProvider, createTheme } from '@mui/material/styles'
+import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
-
-const theme = createTheme({
-  palette: {
-    mode: 'light',
-  },
-  // 👇 AÑADIMOS ESTA SECCIÓN PARA CAMBIAR LA FUENTE
-  typography: {
-    fontFamily: [
-      'Poppins',
-      'sans-serif',
-    ].join(','),
-  },
-});
+import { theme } from './theme/theme.ts'
+import App from './App.tsx'
+import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -28,6 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <CssBaseline />
         <App />
       </BrowserRouter>
+      
     </ThemeProvider>
 
   </StrictMode>,
