@@ -15,12 +15,12 @@ const Button = ({
   ...props
 }: ButtonProps) => {
   const baseStyles =
-    'px-6 py-3 font-semibold rounded-full transition-colors duration-300 ease-in-out';
+    'text-sm px-6 py-4 font-medium rounded-full cursor-pointer';
 
   const variantStyles = {
-    primary:   'bg-[#cce8e3] text-[#006a61] hover:bg-[#cce8e3] cursor-pointer',
-    secondary: 'bg-[#006a61] text-white hover:bg-[#006a61] cursor-pointer',
-    tertiary:  'px-10 bg-white text-black hover:bg-gray-100 cursor-pointer'
+    primary: 'bg-[#cce8e3] text-[#006a61] hover:bg-[#cce8e3]',
+    secondary: 'bg-[#006a61] text-white hover:bg-[#006a61]',
+    tertiary: 'px-12 bg-white text-black hover:bg-white'
   } satisfies Record<ButtonVariant, string>;
 
   const combinedClassName = [baseStyles, variantStyles[variant], className]
@@ -28,13 +28,7 @@ const Button = ({
     .join(' ');
 
   return (
-    <button
-      className={combinedClassName}
-      type={type}
-      {...props}
-    >
-      {children}
-    </button>
+    <button className={combinedClassName} type={type} {...props} > {children} </button>
   );
 };
 
