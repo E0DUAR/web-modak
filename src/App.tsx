@@ -1,37 +1,24 @@
-import './App.css'
-import { Logo, Button } from './ui/atoms'
-import { TrustBadge } from './ui/molecules'
-import StarIcon from '@mui/icons-material/Star';
-import { Typography } from '@mui/material';
+import "./App.css";
+import { FeatureCard, HighlightBadge } from "./ui/molecules";
 
 function App() {
-
   return (
     <main className="flex flexDirection:'row' items-center justify-center gap-12 bg-[#f5f5f5]">
-
-      <Logo />
-      <Typography variant="h3">Welcome to modak</Typography>
-      <Button variant='primary'>Get Started</Button>
-      <Button variant='secondary'>Get Started</Button>
-      <Button variant='tertiary'>Get Started</Button>
-
-      <TrustBadge
-        title="4.8"
-        subtitle="APP STORE RATING"
-        icon={
-          <>
-            {Array.from({ length: 5 }).map((_, i) => (
-              <StarIcon key={i} sx={{ fontSize: 20 }} />
-            ))}
-          </>
-        }
-      />
-      <TrustBadge title="24/7" subtitle="CUSTOMER SUPPORT" />
-      <TrustBadge title="$0" subtitle="NO MONTHLY FEES*, NO MINIMUM DEPOSITS*" />
-
-
+      <FeatureCard
+          title="Chores & Allowance"
+          description="Manage your kids' chores and pay their allowance, all in the Modak Makers app."
+          imageUrl="http://localhost:5173/src/assets/img/Chores-&-Allowance.avif" // URL real de la imagen de fondo
+          gradientColor="#D91A6F"
+          highlight={
+            <HighlightBadge
+              iconUrl="http://localhost:5173/src/assets/icon/chores-avatar.svg"
+              title="$20 Sent to your kid"
+              subtitle="Completed"
+            />
+          }
+        />
     </main>
-  )
+  );
 }
 
-export default App
+export default App;
