@@ -1,26 +1,12 @@
 import "./App.css";
-import { DropdownMenu } from "./ui/molecules";
-
-const featuresMenuItems = [
-  { label: "Chores & Allowance", href: "/features/chores" },
-  { label: "Savings Goals", href: "/features/savings" },
-  { label: "Money Management", href: "/features/management" },
-];
-
-// Array de items para el segundo menú desplegable
-const companyMenuItems = [
-  { label: "About Us", href: "/about" },
-  { label: "Careers", href: "/careers" },
-];
+import { Header } from "./ui/organisms";
 
 function App() {
   return (
-    <main className="min-h-screen flex flexDirection:'row' items-center justify-center gap-12 bg-[#f5f5f5]">
-
-      <DropdownMenu triggerText="Why Modak" items={featuresMenuItems} />
-
-      <DropdownMenu triggerText="Company" items={companyMenuItems} />
-
+    <main>
+       <div className="container mx-auto flex h-[100vh] items-center justify-center">
+        <Header />
+      </div>
     </main>
   );
 }
