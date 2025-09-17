@@ -11,7 +11,7 @@ export const DropdownMenu = ({ triggerText, items }: DropdownMenuProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -20,47 +20,55 @@ export const DropdownMenu = ({ triggerText, items }: DropdownMenuProps) => {
   };
 
   return (
-    <div onMouseLeave={handleClose}>
+    // El contenedor ahora solo gestiona el evento onMouseLeave
+    <div onMouseLeave={handleClose} className="h-full">
       <Button
-        id="dropdown-button"
-        aria-controls={open ? "dropdown-menu" : undefined}
+        id={`dropdown-button-${triggerText}`}
+        aria-controls={open ? `dropdown-menu-${triggerText}` : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
-        onClick={handleClick}
-        onMouseEnter={handleClick}
+        onMouseEnter={handleOpen}
         disableRipple
         sx={{
-          color: "#646867",
-          fontWeight: "500",
+          // Estilos unificados para coincidir con los MuiButton del Header
+          color: open ? "#006a61" : "#3f4947", // Mantiene el color verde si el menú está abierto
+          fontWeight: 500,
           fontSize: "14px",
-          lineHeight: "24px",
+          textTransform: 'none',
+          padding: "18px 24px",
+          height: '100%', // Asegura que ocupe toda la altura del nav
           ":hover": { backgroundColor: "transparent", color: "#006a61" },
         }}
-        endIcon={<KeyboardArrowDownIcon />}
+        endIcon={
+          <KeyboardArrowDownIcon 
+            sx={{ 
+              // Animación de rotación del icono
+              transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
+              transition: 'transform 0.2s ease-in-out',
+            }} 
+          />
+        }
       >
         {triggerText}
       </Button>
 
       <Menu
-        id="dropdown-menu"
+        id={`dropdown-menu-${triggerText}`}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        aria-labelledby="dropdown-button"
-        // 👇 CAMBIO CLAVE AQUÍ
-        // `MenuListProps` se ha ido. Ahora todo está dentro de `slotProps`.
+        MenuListProps={{ 'aria-labelledby': `dropdown-button-${triggerText}`, onMouseLeave: handleClose }}
         slotProps={{
           paper: {
             sx: {
-              marginTop: '-8px', 
+              // Efecto "Glassmorphism" refinado
+              marginTop: '8px',
               borderRadius: "12px",
-              boxShadow: "0 0 16px #1545401f;",
-              backgroundColor: "#f4fbf9bf",
+              boxShadow: "0 4px 16px rgba(21, 69, 64, 0.12)",
+              backgroundColor: "rgba(244, 251, 249, 0.85)",
+              backdropFilter: 'blur(8px)',
+              border: '1px solid rgba(255, 255, 255, 0.5)',
             },
-          },
-          // `MenuListProps` se convierte en el slot `list`
-          list: {
-            onMouseLeave: handleClose,
           },
         }}
       >
@@ -72,11 +80,12 @@ export const DropdownMenu = ({ triggerText, items }: DropdownMenuProps) => {
             onClick={handleClose}
             disableRipple
             sx={{
+              // Estilos de los items del menú refinados
               color: "#191c1b",
-              fontWeight: "600",
+              fontWeight: 600,
               fontSize: "14px",
-              lineHeight: "50px",
-              paddingX: '16px',
+              padding: '10px 24px',
+              lineHeight: '1.5',
               ":hover": { backgroundColor: "transparent", color: "#006a61" },
             }}
           >

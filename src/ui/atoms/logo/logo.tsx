@@ -1,11 +1,22 @@
+type LogoVariant = 'primary' | 'white';
+
 type LogoProps = {
-    className?: string;
+  variant?: LogoVariant;
+  className?: string;
 };
 
-export const Logo = ({ className = '' }: LogoProps) => {
-    return (
-        <div className={`${className}`}>
-          <img src="../../../public/img/logo.svg" alt="logo Modak" />
-        </div>
-    );
+const logoSources: Record<LogoVariant, string> = {
+  primary: '/img/logo.svg',        // El logo principal de color
+  white: '/img/logo-w.svg',    // Asumo que el logo blanco se llama así
+};
+
+export const Logo = ({ variant = 'primary', className = '' }: LogoProps) => {
+  return (
+    <div className={className}>
+      <img 
+        src={logoSources[variant]} 
+        alt="Modak logo" 
+      />
+    </div>
+  );
 };

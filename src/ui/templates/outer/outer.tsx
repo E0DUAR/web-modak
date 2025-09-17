@@ -1,14 +1,24 @@
-import { type ComponentProps } from "react";
+import { type ComponentProps, type ElementType } from 'react';
 
-type OuterProps = {
+// Usamos genéricos de TypeScript. T será el tipo del elemento HTML.
+type OuterProps<T extends ElementType> = {
+  as?: T; // Ahora la prop 'as' es aceptada
   children: React.ReactNode;
   className?: string;
-} & ComponentProps<"section">;
+} & ComponentProps<T>; // Heredamos todos los props del elemento HTML (ej. 'id', 'aria-label')
 
-export const Outer = ({ children, className = "", ...props }: OuterProps) => {
+export const Outer = <T extends ElementType = 'section'>({
+  as,
+  children,
+  className = '',
+  ...props
+}: OuterProps<T>) => {
+  // Si se pasa la prop 'as', usamos ese componente. Si no, usamos 'section' por defecto.
+  const Component = as || 'section';
+
   return (
-    <section className={`w-full ${className}`} {...props}>
+    <Component className={`w-full ${className}`} {...props}>
       {children}
-    </section>
+    </Component>
   );
 };

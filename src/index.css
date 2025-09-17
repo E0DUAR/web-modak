@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  line-height: 24px;
+  color: #262733;
+  background-color: #fff;
+  min-height: 100%;
+  margin: 0;
+  display: block;
+}

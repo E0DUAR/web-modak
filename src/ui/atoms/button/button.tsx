@@ -17,7 +17,7 @@ export const Button = ({
   ...props
 }: ButtonProps) => {
   
-  const baseStyles = 'text-sm px-6 py-4 font-medium rounded-full cursor-pointer';
+const baseStyles = 'flex flex-row w-auto h-[48px] self-center justify-center items-center mr-[0px] py-[10px] px-[24px] border-0 rounded-full text-sm font-semibold text-center cursor-pointer';
 
   const variantStyles = {
 
