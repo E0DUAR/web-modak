@@ -36,17 +36,17 @@ export const Header = () => {
   };
 
   return (
-    <header className="bg-[green] fixed inset-x-0 top-0 z-50 px-4 md:px-10">
-      <div className="bg-[red] relative mx-auto mt-0 flex h-[64px] max-w-[1200px] flex-row flex-wrap items-center justify-between rounded-none bg-[#f5faf8bf] py-2 pr-4 pl-6 backdrop-blur-xl md:mt-6 md:rounded-[100px] md:pr-[8px] md:pl-[24px]">
-        <div className="bg-[blue] flex flex-1 justify-between items-center h-full">
+    <header className="fixed inset-x-0 top-0 z-50 px-4 md:px-10">
+      <div className="relative mx-auto mt-0 flex h-[64px] max-w-[1200px] flex-row flex-wrap items-center justify-between rounded-none bg-[#f5faf8bf] py-2 pr-4 pl-6 backdrop-blur-xl md:mt-6 md:rounded-[100px] md:pr-[8px] md:pl-[24px]">
+        <div className="flex flex-1 justify-between items-center h-full">
           {/* Lado Izquierdo: Logo */}
           <a href="#"><Logo className="float-left relative" /></a>
           
-          <div className="bg-[yellow] flex flex-row flex-1 justify-end items-center">
-            <nav className="bg-cyan-300 flex flex-row static float-right">
+          <div className="flex flex-row flex-1 justify-end items-center">
+            <nav className="flex flex-row static float-right">
 
                 {/* Contenedor para enlaces con separador */}
-                <div className="bg-[beige] flex flex-row flex-initial justify-start items-center">
+                <div className="bg-[green] flex flex-row flex-initial justify-start items-center no-underline">
                   <DropdownMenu triggerText="Features" items={featuresItems} />
                   <DropdownMenu triggerText="Resources" items={resourcesItems} />
                   <MuiButton sx={navLinkStyles}>Why Modak</MuiButton>

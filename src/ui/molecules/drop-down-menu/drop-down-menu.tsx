@@ -21,7 +21,8 @@ export const DropdownMenu = ({ triggerText, items }: DropdownMenuProps) => {
 
   return (
     // El contenedor ahora solo gestiona el evento onMouseLeave
-    <div onMouseLeave={handleClose} className="h-full">
+    <div onMouseLeave={handleClose} className="bg-[red] inline-block relative mx-auto my-auto z-[900] text-left">
+
       <Button
         id={`dropdown-button-${triggerText}`}
         aria-controls={open ? `dropdown-menu-${triggerText}` : undefined}
@@ -30,7 +31,7 @@ export const DropdownMenu = ({ triggerText, items }: DropdownMenuProps) => {
         onMouseEnter={handleOpen}
         disableRipple
         sx={{
-          // Estilos unificados para coincidir con los MuiButton del Header
+          backgroundColor: "blue",
           color: open ? "#006a61" : "#3f4947", // Mantiene el color verde si el menú está abierto
           fontWeight: 500,
           fontSize: "14px",
@@ -43,6 +44,7 @@ export const DropdownMenu = ({ triggerText, items }: DropdownMenuProps) => {
           <KeyboardArrowDownIcon 
             sx={{ 
               // Animación de rotación del icono
+              backgroundColor: "beige",
               transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
               transition: 'transform 0.2s ease-in-out',
             }} 
