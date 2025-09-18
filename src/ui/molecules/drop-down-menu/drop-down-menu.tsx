@@ -22,9 +22,9 @@ export const DropdownMenu = ({ triggerText, items }: DropdownMenuProps) => {
 
   return (
     // El contenedor ahora solo gestiona el evento onMouseLeave
-    <div onMouseLeave={handleClose} className="bg-[red] text-left z-[900] mx-auto my-auto inline-block relative">
+    <div onMouseLeave={handleClose} className="text-left z-[900] mx-auto my-auto inline-block relative">
 
-      <Button
+    {/*   <Button
         id={`dropdown-button-${triggerText}`}
         aria-controls={open ? `dropdown-menu-${triggerText}` : undefined}
         aria-haspopup="true"
@@ -70,6 +70,50 @@ export const DropdownMenu = ({ triggerText, items }: DropdownMenuProps) => {
           {triggerText} 
         </Box>
       </Button>
+ */}
+
+ 
+<Button
+  id={`dropdown-button-${triggerText}`}
+  aria-controls={open ? `dropdown-menu-${triggerText}` : undefined}
+  aria-haspopup="true"
+  aria-expanded={open ? "true" : undefined}
+  onMouseEnter={handleOpen}
+  disableRipple
+  sx={{
+    backgroundColor: "transparent",
+    fontSize: "14px",
+    lineHeight: "24px",
+    padding: "8px 19px",
+    fontWeight: 500,
+    userSelect: 'none',
+    cursor: 'pointer',
+    justifyContent: 'flex-start',
+    textAlign: 'left',
+    whiteSpace: 'nowrap',
+    position: 'relative',
+    ":hover": { 
+      backgroundColor: "rgba(0, 106, 97, 0.04)",
+      color: "#006a61" 
+    },
+  }}
+  endIcon={
+    <KeyboardArrowDownIcon 
+      sx={{ 
+        backgroundColor: "transparent",
+        width: '1.2rem',
+        height: '1.2rem',
+        lineHeight: '1',
+        color: '#3f4947',
+      }} 
+    />
+  }
+>
+  <Box className={`${open ? "text-[#006a61]" : "text-[#3f4947]"}`}>
+    {triggerText} 
+  </Box>
+</Button>
+
 
       <Menu
         id={`dropdown-menu-${triggerText}`}

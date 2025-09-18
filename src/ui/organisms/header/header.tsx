@@ -28,6 +28,7 @@ export const Header = () => {
   const navLinkStyles = {
     color: "#3f4947",
     fontWeight: 500,
+    lineHeight: "24px",
     fontSize: "14px",
     textTransform: 'none',
     padding: "18px 24px",
@@ -37,7 +38,7 @@ export const Header = () => {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-4 md:px-10">
-      <div className="relative mx-auto mt-0 flex h-[64px] max-w-[1200px] flex-row flex-wrap items-center justify-between rounded-none bg-[#f5faf8bf] py-2 pr-4 pl-6 backdrop-blur-xl md:mt-6 md:rounded-[100px] md:pr-[8px] md:pl-[24px]">
+      <div className="relative mx-auto mt-0 flex h-[64px] max-w-[1200px] flex-row flex-wrap items-center justify-between rounded-none bg-[#f5faf8bf] py-2 pr-6 pl-6 backdrop-blur-xl md:mt-6 md:rounded-[100px] md:pr-[16px] md:pl-[24px]">
         <div className="flex flex-1 justify-between items-center h-full">
           {/* Lado Izquierdo: Logo */}
           <a href="#"><Logo className="float-left relative" /></a>
@@ -46,7 +47,7 @@ export const Header = () => {
             <nav className="flex flex-row static float-right">
 
                 {/* Contenedor para enlaces con separador */}
-                <div className="bg-[green] flex flex-row flex-initial justify-start items-center no-underline">
+                <div className="flex flex-row flex-initial justify-start items-center no-underline">
                   <DropdownMenu triggerText="Features" items={featuresItems} />
                   <DropdownMenu triggerText="Resources" items={resourcesItems} />
                   <MuiButton sx={navLinkStyles}>Why Modak</MuiButton>
