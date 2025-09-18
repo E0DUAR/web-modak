@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { Box } from "@mui/material";
 
 type DropdownItem = { label: string; href: string };
 type DropdownMenuProps = { triggerText: string; items: DropdownItem[] };
@@ -21,7 +22,7 @@ export const DropdownMenu = ({ triggerText, items }: DropdownMenuProps) => {
 
   return (
     // El contenedor ahora solo gestiona el evento onMouseLeave
-    <div onMouseLeave={handleClose} className="bg-[red] inline-block relative mx-auto my-auto z-[900] text-left">
+    <div onMouseLeave={handleClose} className="bg-[red] text-left z-[900] mx-auto my-auto inline-block relative">
 
       <Button
         id={`dropdown-button-${triggerText}`}
@@ -32,12 +33,16 @@ export const DropdownMenu = ({ triggerText, items }: DropdownMenuProps) => {
         disableRipple
         sx={{
           backgroundColor: "blue",
-          color: open ? "#006a61" : "#3f4947", // Mantiene el color verde si el menú está abierto
-          fontWeight: 500,
-          fontSize: "14px",
-          textTransform: 'none',
           padding: "18px 24px",
-          height: '100%', // Asegura que ocupe toda la altura del nav
+          fontWeight: 500,
+          userSelect: 'none',
+          cursor: 'pointer',
+          verticalAlign: 'left',          
+          textAlign: 'left',
+          whiteSpace: 'nowrap',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          position: 'relative',
           ":hover": { backgroundColor: "transparent", color: "#006a61" },
         }}
         endIcon={
@@ -45,13 +50,25 @@ export const DropdownMenu = ({ triggerText, items }: DropdownMenuProps) => {
             sx={{ 
               // Animación de rotación del icono
               backgroundColor: "beige",
-              transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
-              transition: 'transform 0.2s ease-in-out',
+              width: '1rem',
+              height: '1rem',
+              marginTop: 'auto',
+              marginRight: '20px',
+              marginBottom: 'auto',
+              marginLeft: 'auto',
+              position: 'absolute',
+              top: '0',
+              bottom: '0',
+              right: '0',
+              fontWeight: '400',
+              lineHeight: '1',
             }} 
           />
         }
       >
-        {triggerText}
+        <Box className={`bg-[yellow] ${open ? "text-[#006a61]" : "text-[#3f4947]"} text-sm`}>
+          {triggerText} 
+        </Box>
       </Button>
 
       <Menu
