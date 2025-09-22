@@ -16,6 +16,7 @@ export const Logo = ({ variant = 'primary', className = '' }: LogoProps) => {
       <img 
         src={logoSources[variant]} 
         alt="Modak logo" 
+        className="align-middle max-w-full border-0"
       />
     </div>
   );
