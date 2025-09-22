@@ -9,7 +9,6 @@ type DropdownItem = { label: string; href: string };
 type DropdownMenuProps = { triggerText: string; items: DropdownItem[] };
 
 export const DropdownMenu = ({ triggerText, items }: DropdownMenuProps) => {
-
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -22,9 +21,7 @@ export const DropdownMenu = ({ triggerText, items }: DropdownMenuProps) => {
   };
 
   return (
-    // El contenedor ahora solo gestiona el evento onMouseLeave
-    <div onMouseLeave={handleClose} className="text-left z-[900] mx-auto my-auto inline-block relative">
-
+    <div onMouseLeave={handleClose} className="inline-block relative text-left z-[900]">
       <Button
         id={`dropdown-button-${triggerText}`}
         aria-controls={open ? `dropdown-menu-${triggerText}` : undefined}
@@ -36,34 +33,32 @@ export const DropdownMenu = ({ triggerText, items }: DropdownMenuProps) => {
           backgroundColor: "transparent",
           fontSize: "14px",
           lineHeight: "24px",
-          padding: "8px 19px",
+          padding: "20px 16px",
           fontWeight: 500,
-          userSelect: 'none',
-          cursor: 'pointer',
-          justifyContent: 'flex-start',
-          textAlign: 'left',
-          whiteSpace: 'nowrap',
-          position: 'relative',
-          ":hover": { 
-            backgroundColor: "rgba(0, 106, 97, 0.04)",
-            color: "#006a61" 
+          userSelect: "none",
+          cursor: "pointer",
+          justifyContent: "flex-start",
+          textAlign: "left",
+          whiteSpace: "nowrap",
+          position: "relative",
+          color: open ? "#006a61" : "#3f4947",
+          ":hover": {
+            backgroundColor: "transparent",
+            color: "#006a61",
           },
         }}
         endIcon={
-          <KeyboardArrowDownIcon 
-            sx={{ 
-              backgroundColor: "transparent",
-              width: '1.2rem',
-              height: '1.2rem',
-              lineHeight: '1',
-              color: '#3f4947',
-            }} 
+          <KeyboardArrowDownIcon
+            sx={{
+              width: 18,
+              height: 18,
+              mr: 0.5,
+              color: "currentColor",
+            }}
           />
         }
       >
-        <Box className={`${open ? "text-[#006a61]" : "text-[#3f4947]"}`}>
-          {triggerText} 
-        </Box>
+        <Box>{triggerText}</Box>
       </Button>
 
       <Menu
@@ -72,17 +67,26 @@ export const DropdownMenu = ({ triggerText, items }: DropdownMenuProps) => {
         open={open}
         onClose={handleClose}
         disableScrollLock
-        MenuListProps={{ 'aria-labelledby': `dropdown-button-${triggerText}`, onMouseLeave: handleClose }}
+        autoFocus={false}
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+        transformOrigin={{ vertical: "top", horizontal: "left" }}
+        MenuListProps={{
+          "aria-labelledby": `dropdown-button-${triggerText}`,
+          onMouseLeave: handleClose,
+        }}
         slotProps={{
           paper: {
             sx: {
-              // Efecto "Glassmorphism" refinado
-              marginTop: '8px',
+              mt: "-8px",
+              zIndex: 10,
               borderRadius: "12px",
-              boxShadow: "0 4px 16px rgba(21, 69, 64, 0.12)",
-              backgroundColor: "rgba(244, 251, 249, 0.85)",
-              backdropFilter: 'blur(8px)',
-              border: '1px solid rgba(255, 255, 255, 0.5)',
+              WebkitBackdropFilter: "blur(24px)",
+              backdropFilter: "blur(24px)",
+              backgroundColor: "#f4fbf9bf",
+              boxShadow: "0 0 16px #1545401f",
+              minWidth: "143px",
+              maxWidth: "calc(100vw - 32px)",
+              overflow: "hidden",
             },
           },
         }}
@@ -95,12 +99,17 @@ export const DropdownMenu = ({ triggerText, items }: DropdownMenuProps) => {
             onClick={handleClose}
             disableRipple
             sx={{
-              // Estilos de los items del menú refinados
-              color: "#191c1b",
-              fontWeight: 600,
+              color: "#3f4947",
+              padding: "24px 24px",
               fontSize: "14px",
-              padding: '10px 24px',
-              lineHeight: '1.5',
+              fontWeight: 600,
+              verticalAlign: "top",
+              textAlign: "left",
+              whiteSpace: "nowrap", 
+              marginLeft: "auto",
+              marginRight: "auto",
+              textDecoration: "none",
+              position: "relative",
               ":hover": { backgroundColor: "transparent", color: "#006a61" },
             }}
           >
@@ -108,7 +117,6 @@ export const DropdownMenu = ({ triggerText, items }: DropdownMenuProps) => {
           </MenuItem>
         ))}
       </Menu>
-
     </div>
   );
 };
