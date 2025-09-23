@@ -21,7 +21,7 @@ export const DropdownMenu = ({ triggerText, items }: DropdownMenuProps) => {
   };
 
   return (
-    <div onMouseLeave={handleClose} className="inline-block relative text-left z-[900]">
+    <div onMouseLeave={handleClose} className="text-left z-[900] relative mx-auto flex flex-col justify-between items-start w-full lg:w-auto lg:inline-block">
       <Button
         id={`dropdown-button-${triggerText}`}
         aria-controls={open ? `dropdown-menu-${triggerText}` : undefined}
