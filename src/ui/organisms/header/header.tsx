@@ -45,27 +45,15 @@ export const Header = () => {
             <Logo className="bg-transparent self-center mt-0 float-left no-underline relative pl-[10px] md:pl-0 md:self-auto" />
           </a>
 
-          <div className=" w-full h-[14426px] absolute top-full left-0 right-0 block bg-blue-400
-    lg:flex lg:flex-row lg:flex-1 lg:justify-end lg:items-center lg:h-auto lg:static lg:w-auto lg:bg-transparent">
+          <div className="bg-[blue] flex flex-row flex-1 justify-end items-center h-auto static w-auto :bg-transparent">
 
             { /*el div de abajo es hidden por defecto, se muestra en lg y mayores*/}
-            <nav className="
-            
-            top-0
-            md:top-0
-            md:left-[24px]
-            md:backdrop-blur-[16px] md:bg-[#f5faf8e6] md:rounded-[12px]
-            md:justify-end 
-            md:items-center
-            md:mt-[8px] 
-            md:mx-[40px]
-            md:absolute 
-            md:right-[24px]
-            md:shadow-[0_0_16px_#1545401f]
-            lg:flex lg:flex-row lg:static lg:float-right
+            <nav className="hidden top-0 lg:flex lg:flex-row lg:static lg:float-right">
 
-            lg:bg-transparent lg:backdrop-blur-0 lg:rounded-none lg:mt-0 lg:mx-0 lg:shadow-none lg:right-auto lg:left-auto
-            ">
+
+
+
+
               {/* Contenedor para enlaces con separador */}
               <div className="flex flex-col lg:flex-row flex-initial justify-start items-center no-underline">
                 <DropdownMenu triggerText="Features" items={featuresItems} />
@@ -83,9 +71,17 @@ export const Header = () => {
               </div>
             </nav>
 
+
+
+
+
             <Button variant="secondary" className="hidden md:flex">
               Get started
             </Button>
+
+
+
+
           </div>
 
           {/* --- Botón de Menú Móvil (Hamburguesa) --- */}
