@@ -6,36 +6,38 @@ type MobileVerticalMenuProps = { textHeader: string; items: listHeader[] };
 export const MobileVerticalMenu = ({ textHeader, items }: MobileVerticalMenuProps) => {
 
   const headerStyles = {
-    backgroundColor: "transparent",
+    backgroundColor: "#f5f7f7",
     color: "#3f4947",
     fontWeight: 500,
     lineHeight: "24px",
     fontSize: "14px",
     textTransform: "none",
-    padding: "18px 32px",
+    paddingTop: "5px",
+    paddingBottom: "10px",
+    paddingLeft: "24px",
+    paddingRight: "24px",
     display: "block",
     textAlign: "left",
   };
 
   const itemTextStyles = {
-    color: "#3f4947",
+    color: "#646867",
     fontWeight: 400,
     lineHeight: "24px",
     fontSize: "14px",
     textTransform: "none",
-    ":hover": { backgroundColor: "transparent", color: "#006a61" },
+    ":hover": { backgroundColor: "#f5f7f7", color: "#006a61" },
   };
 
   const itemButtonStyles = {
-    padding: "18px 32px",
+      padding: "8px 24px",
      ":hover": { backgroundColor: "transparent"}
   };
 
   return (
     <div>
-      <div>
         <List>
-          <ListSubheader disableGutters sx={headerStyles}>
+          <ListSubheader disableSticky sx={headerStyles}>
             {textHeader}
           </ListSubheader>
 
@@ -45,7 +47,6 @@ export const MobileVerticalMenu = ({ textHeader, items }: MobileVerticalMenuProp
             </ListItemButton>
           ))}
         </List>
-      </div>
     </div>
   );
 };
