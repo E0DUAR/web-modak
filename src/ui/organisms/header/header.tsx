@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Logo, Button } from "../../atoms";
 import { DropdownMenu } from "../../molecules/";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import { Button as MuiButton } from "@mui/material";
+import { Button as MuiButton, Drawer } from "@mui/material";
 
 // --- Datos para los menús desplegables ---
 const featuresItems = [
@@ -17,11 +17,10 @@ const resourcesItems = [
 ];
 
 export const Header = () => {
-  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!isMobileMenuOpen);
-  };
+  const handleClose = useCallback(() => setOpen(false), []);
+  const toggle = useCallback(() => setOpen((prev) => !prev), []);
 
   // --- Estilos unificados para todos los enlaces de navegación ---
   const navLinkStyles = {
@@ -39,21 +38,14 @@ export const Header = () => {
     <header className="fixed inset-x-0 top-0 z-50 px-0 md:px-10 lg:px-10">
       <div className="relative flex h-[64px] w-full max-w-[1200px] flex-row items-center justify-between bg-[#f5faf8bf] backdrop-blur-lg pl-[64px] pr-[48px] rounded-none mt-0 mx-0  py-[8px]   md:rounded-[100px] md:mt-6 md:mx-0 md:pl-[24px] md:pr-[8px] lg:mx-auto lg:pr-[16px] lg:pl-[24px]">
         <div className="flex flex-1  items-center h-full  justify-end md:justify-between">
-
           {/* Lado Izquierdo: Logo */}
           <a href="#">
             <Logo className="bg-transparent self-center mt-0 float-left no-underline relative pl-[10px] md:pl-0 md:self-auto" />
           </a>
 
-          <div className="bg-[blue] flex flex-row flex-1 justify-end items-center h-auto static w-auto :bg-transparent">
-
-            { /*el div de abajo es hidden por defecto, se muestra en lg y mayores*/}
+          <div className="flex flex-row flex-1 justify-end items-center h-auto static w-auto :bg-transparent">
+            {/*el div de abajo es hidden por defecto, se muestra en lg y mayores*/}
             <nav className="hidden top-0 lg:flex lg:flex-row lg:static lg:float-right">
-
-
-
-
-
               {/* Contenedor para enlaces con separador */}
               <div className="flex flex-col lg:flex-row flex-initial justify-start items-center no-underline">
                 <DropdownMenu triggerText="Features" items={featuresItems} />
@@ -70,33 +62,66 @@ export const Header = () => {
                 <Button variant="primary">Log in</Button>
               </div>
             </nav>
-
-
-
-
-
             <Button variant="secondary" className="hidden md:flex">
               Get started
             </Button>
-
-
-
-
           </div>
 
+          <Drawer
+            id="top-drawer"
+            anchor="top"
+            open={open}
+            onClose={handleClose}
+            ModalProps={{ keepMounted: true, disableScrollLock: true }}
+            slotProps={{
+              paper: {
+                sx: {
+                  top: "4rem",
+                  height: "calc(100vh - 4rem)",
+                  display: "flex",
+                  flexDirection: "column",
+                  px: "60px", 
+                  overflow: "auto",
+                  backgroundColor: "transparent",
+                  width: "100%",
+                },
+              },
+              backdrop: { sx: { backgroundColor: "transparent" } },
+            }}
+          >
+            {/* Contenido del Drawer */}
+
+            <nav className="bg-[#fff] rounded-[12px] mt-[8px] mx-auto backdrop-blur-[16px] flex flex-col items-center  min-w-[200px] w-full text-left">
+              <MuiButton sx={navLinkStyles}>Why Modak</MuiButton>
+              <MuiButton sx={navLinkStyles}>About us</MuiButton>
+              <MuiButton sx={{ ...navLinkStyles, borderRight: "none" }}>
+                FAQ
+              </MuiButton>{" "}
+            </nav>
+          </Drawer>
+
           {/* --- Botón de Menú Móvil (Hamburguesa) --- */}
-          <div className="md:block lg:hidden float-right cursor-pointer select-none relative p-[12px] rounded-[16px] bg-transparent text-[#262733]">
-            <button
-              onClick={toggleMobileMenu}
-              aria-label="Toggle menu"
+          <div className="block lg:hidden float-right cursor-pointer select-none relative p-[12px] rounded-[16px] bg-transparent text-[#262733]">
+            <MuiButton
+              onClick={toggle}
+              aria-label={open ? "Cerrar menú" : "Abrir menú"}
+              aria-haspopup="dialog"
+              aria-controls="top-drawer"
+              aria-expanded={open || undefined}
               className="text-inherit"
             >
-              {isMobileMenuOpen ? (
-                <CloseIcon sx={{ fontSize: 24 }} className="align-middle" />
+              {open ? (
+                <CloseIcon
+                  fontSize="inherit"
+                  className="align-middle text-[24px]"
+                />
               ) : (
-                <MenuIcon sx={{ fontSize: 24 }} className="align-middle" />
+                <MenuIcon
+                  fontSize="inherit"
+                  className="align-middle text-[24px]"
+                />
               )}
-            </button>
+            </MuiButton>
           </div>
         </div>
       </div>
