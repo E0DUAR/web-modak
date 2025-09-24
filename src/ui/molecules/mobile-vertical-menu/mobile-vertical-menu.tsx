@@ -1,49 +1,49 @@
-import { ListSubheader } from "@mui/material";
-import List from "@mui/material/List";
-import ListItemButton from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
+import { ListSubheader, List, ListItemButton, ListItemText } from "@mui/material";
 
 type listHeader = { label: string; href: string };
 type MobileVerticalMenuProps = { textHeader: string; items: listHeader[] };
 
+export const MobileVerticalMenu = ({ textHeader, items }: MobileVerticalMenuProps) => {
 
-
-  const HeaderStyles = {
+  const headerStyles = {
     backgroundColor: "transparent",
     color: "#3f4947",
     fontWeight: 500,
     lineHeight: "24px",
     fontSize: "14px",
     textTransform: "none",
-    padding: "18px 24px",
+    padding: "18px 32px",
     display: "block",
-    textAlign: 'left',
+    textAlign: "left",
   };
 
-    const itemsStyles = {
-    backgroundColor: "transparent",
+  const itemTextStyles = {
     color: "#3f4947",
-    fontWeight: 500,
+    fontWeight: 400,
     lineHeight: "24px",
     fontSize: "14px",
     textTransform: "none",
-    display: "block",
-    textAlign: 'left',
+    ":hover": { backgroundColor: "transparent", color: "#006a61" },
   };
 
-export const MobileVerticalMenu = ({ textHeader, items, }: MobileVerticalMenuProps) => {
+  const itemButtonStyles = {
+    padding: "18px 32px",
+     ":hover": { backgroundColor: "transparent"}
+  };
+
   return (
     <div>
       <div>
         <List>
-          <ListSubheader  sx={HeaderStyles} >{textHeader}</ListSubheader>
+          <ListSubheader disableGutters sx={headerStyles}>
+            {textHeader}
+          </ListSubheader>
 
           {items.map((item) => (
-            <ListItemButton component="a" href={item.href} key={item.label}>
-              <ListItemText sx={itemsStyles}>{item.label}</ListItemText>
+            <ListItemButton  sx={itemButtonStyles} component="a" href={item.href} key={item.label}>
+              <ListItemText slotProps={{ primary: { sx: itemTextStyles }}}> {item.label} </ListItemText>
             </ListItemButton>
           ))}
-
         </List>
       </div>
     </div>

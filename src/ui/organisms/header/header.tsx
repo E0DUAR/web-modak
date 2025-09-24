@@ -10,6 +10,13 @@ const featuresItems = [
   { label: "No monthly fees", href: "#" },
   { label: "The App", href: "#" },
   { label: "Debit card", href: "#" },
+  { label: "Chores & Allowances", href: "#" },
+  { label: "Good habits, gamified", href: "#" },
+  { label: "Money management", href: "#" },
+  { label: "Safety", href: "#" },
+
+
+  
 ];
 const resourcesItems = [
   { label: "Learning Hub", href: "#" },
@@ -77,7 +84,7 @@ export const Header = () => {
             slotProps={{
               paper: {
                 sx: {
-                  backgroundColor: "blue",
+                  backgroundColor: "transparent",
                   top: "4rem",
                   height: "calc(100vh - 4rem)",
                   display: "flex",
@@ -92,8 +99,9 @@ export const Header = () => {
           >
             {/* Contenido del Drawer */}
 
-            <nav className="bg-[red] backdrop-blur-[16px] lg:rounded-[12px] mt-[8px] w-full lg:flex lg:flex-col">
+            <nav className="bg-[#f5faf8bf] backdrop-blur-[16px] lg:rounded-[12px] mt-[8px] w-full lg:flex lg:flex-col">
               <MobileVerticalMenu textHeader="Features" items={featuresItems} />
+              <MobileVerticalMenu textHeader="Resources" items={resourcesItems} />
               <MuiButton sx={navLinkStyles}>Why Modak</MuiButton>
               <MuiButton sx={navLinkStyles}>About us</MuiButton>
               <MuiButton sx={navLinkStyles}>FAQ</MuiButton>
