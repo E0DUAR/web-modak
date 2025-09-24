@@ -5,10 +5,13 @@ import MenuItem from "@mui/material/MenuItem";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { Box } from "@mui/material";
 
-type DropdownItem = { label: string; href: string };
-type DropdownMenuProps = { triggerText: string; items: DropdownItem[] };
+type DropdownItem = { label: string; href: string }; //cada item del menu
+
+type DropdownMenuProps = { triggerText: string; items: DropdownItem[] }; //texto principal
 
 export const DropdownMenu = ({ triggerText, items }: DropdownMenuProps) => {
+
+  
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -21,7 +24,10 @@ export const DropdownMenu = ({ triggerText, items }: DropdownMenuProps) => {
   };
 
   return (
-    <div onMouseLeave={handleClose} className="text-left z-[900] relative mx-auto flex flex-col justify-between items-start w-full lg:w-auto lg:inline-block">
+    <div
+      onMouseLeave={handleClose}
+      className="text-left z-[900] relative mx-auto flex flex-col justify-between items-start w-full lg:w-auto lg:inline-block"
+    >
       <Button
         id={`dropdown-button-${triggerText}`}
         aria-controls={open ? `dropdown-menu-${triggerText}` : undefined}
@@ -105,7 +111,7 @@ export const DropdownMenu = ({ triggerText, items }: DropdownMenuProps) => {
               fontWeight: 600,
               verticalAlign: "top",
               textAlign: "left",
-              whiteSpace: "nowrap", 
+              whiteSpace: "nowrap",
               marginLeft: "auto",
               marginRight: "auto",
               textDecoration: "none",

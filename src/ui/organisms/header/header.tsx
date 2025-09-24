@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { Logo, Button } from "../../atoms";
-import { DropdownMenu } from "../../molecules/";
+import { DropdownMenu, MobileVerticalMenu } from "../../molecules/";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { Button as MuiButton, Drawer } from "@mui/material";
@@ -17,8 +17,8 @@ const resourcesItems = [
 ];
 
 export const Header = () => {
+  // --- Estado y funciones para el Drawer (menú móvil) ---
   const [open, setOpen] = useState(false);
-
   const handleClose = useCallback(() => setOpen(false), []);
   const toggle = useCallback(() => setOpen((prev) => !prev), []);
 
@@ -31,6 +31,7 @@ export const Header = () => {
     textTransform: "none",
     padding: "18px 24px",
     display: "block",
+    textAlign: 'left',
     ":hover": { backgroundColor: "transparent", color: "#006a61" },
   };
 
@@ -72,18 +73,18 @@ export const Header = () => {
             anchor="top"
             open={open}
             onClose={handleClose}
-            ModalProps={{ keepMounted: true, disableScrollLock: true }}
+            ModalProps={{ keepMounted: true, disableScrollLock: true, disableAutoFocus: true }}
             slotProps={{
               paper: {
                 sx: {
+                  backgroundColor: "blue",
                   top: "4rem",
                   height: "calc(100vh - 4rem)",
                   display: "flex",
                   flexDirection: "column",
-                  px: "60px", 
                   overflow: "auto",
-                  backgroundColor: "transparent",
                   width: "100%",
+                  padding: "0 40px",
                 },
               },
               backdrop: { sx: { backgroundColor: "transparent" } },
@@ -91,12 +92,11 @@ export const Header = () => {
           >
             {/* Contenido del Drawer */}
 
-            <nav className="bg-[#fff] rounded-[12px] mt-[8px] mx-auto backdrop-blur-[16px] flex flex-col items-center  min-w-[200px] w-full text-left">
+            <nav className="bg-[red] backdrop-blur-[16px] lg:rounded-[12px] mt-[8px] w-full lg:flex lg:flex-col">
+              <MobileVerticalMenu textHeader="Features" items={featuresItems} />
               <MuiButton sx={navLinkStyles}>Why Modak</MuiButton>
               <MuiButton sx={navLinkStyles}>About us</MuiButton>
-              <MuiButton sx={{ ...navLinkStyles, borderRight: "none" }}>
-                FAQ
-              </MuiButton>{" "}
+              <MuiButton sx={navLinkStyles}>FAQ</MuiButton>
             </nav>
           </Drawer>
 
