@@ -2,7 +2,6 @@ import { useState, useCallback } from "react";
 import { Logo, Button } from "../../atoms";
 import { DropdownMenu, MobileVerticalMenu } from "../../molecules/";
 import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
 import { Button as MuiButton, Drawer, Box } from "@mui/material";
 
 // --- Datos para los menús desplegables ---
@@ -53,6 +52,7 @@ export const Header = () => {
           <div className="flex flex-row flex-1 justify-end items-center h-auto static w-auto :bg-transparent">
             {/*el div de abajo es hidden por defecto, se muestra en lg y mayores*/}
             <nav className="hidden top-0 lg:flex lg:flex-row lg:static lg:float-right">
+
               {/* Contenedor para enlaces con separador */}
               <div className="flex flex-col lg:flex-row flex-initial justify-start items-center no-underline">
                 <DropdownMenu triggerText="Features" items={featuresItems} />
@@ -74,6 +74,7 @@ export const Header = () => {
             </Button>
           </div>
 
+          {/* Modal que se abre en mobile al dar click al boton de menú */}
           <Drawer
             id="top-drawer"
             anchor="top"
@@ -121,28 +122,20 @@ export const Header = () => {
           </Drawer>
 
           {/* --- Botón de Menú Móvil (Hamburguesa) --- */}
-          <div className="block lg:hidden float-right cursor-pointer select-none relative p-[12px] rounded-[16px] bg-transparent text-[#262733]">
+          <div className=" lg:hidden  cursor-pointer">
             <MuiButton
               onClick={toggle}
               aria-label={open ? "Cerrar menú" : "Abrir menú"}
               aria-haspopup="dialog"
               aria-controls="top-drawer"
               aria-expanded={open || undefined}
-              className="text-inherit"
-            >
-              {open ? (
-                <CloseIcon
-                  fontSize="inherit"
-                  className="align-middle text-[24px]"
-                />
-              ) : (
-                <MenuIcon
-                  fontSize="inherit"
-                  className="align-middle text-[24px]"
-                />
-              )}
+              sx={{  borderRadius:"16px", padding: "12px", minWidth: "auto", backgroundColor: open ? "#8bb0ab" : "transparent", }}
+
+            > 
+              <MenuIcon sx={{color:"#3f4947", fontWeight:"400", fontSize:"24px"}}/>
             </MuiButton>
           </div>
+
         </div>
       </div>
     </header>
