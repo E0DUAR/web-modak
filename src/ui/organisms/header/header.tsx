@@ -41,12 +41,12 @@ export const Header = () => {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-0 md:px-10 lg:px-10">
-      <div className="relative flex h-[64px] w-full max-w-[1200px] flex-row items-center justify-between bg-[#f5faf8bf] backdrop-blur-lg pl-[64px] pr-[48px] rounded-none mt-0 mx-0  py-[8px]   md:rounded-[100px] md:mt-6 md:mx-0 md:pl-[24px] md:pr-[8px] lg:mx-auto lg:pr-[16px] lg:pl-[24px]">
+    <header className="fixed inset-x-0 top-0 z-50 mx-auto px-0 md:px-10">
+      <div className="relative flex h-[56px] md:h-[64px] w-full md:max-w-[1200px] flex-row items-center justify-between bg-[#f5faf8bf] backdrop-blur-lg pl-[20px] pr-[16px] rounded-none mt-0 mx-0  py-[8px] md:rounded-[100px] md:mt-6 md:mx-0 md:pl-[24px] md:pr-[8px] lg:mx-auto lg:pt-[8px] lg:pr-[16px] lg:pl-[24px] lg:pb-[8px]">
         <div className="flex flex-1  items-center h-full  justify-end md:justify-between">
           {/* Lado Izquierdo: Logo */}
           <a href="#">
-            <Logo className="bg-transparent self-center mt-0 float-left no-underline relative pl-[10px] md:pl-0 md:self-auto" />
+            <Logo className="bg-transparent self-center mt-0 float-left no-underline relative md:pl-0 md:self-auto" />
           </a>
 
           <div className="flex flex-row flex-1 justify-end items-center h-auto static w-auto :bg-transparent">
